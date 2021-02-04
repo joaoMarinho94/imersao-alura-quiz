@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useRouter } from 'next/router';
 
 import db from '../db.json';
@@ -7,19 +6,11 @@ import db from '../db.json';
 import Widget from '../src/components/Widget';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
+import QuizContainer from '../src/components/QuizContainer';
 import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
-
-const QuizContainer = styled.div`
-  width: 100%;
-  max-width: 350px;
-  padding-top: 45px;
-  margin: auto 10%;
-  @media screen and (max-width: 500px) {
-    margin: auto;
-    padding: 15px;
-  }
-`;
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 export default function Home() {
   const router = useRouter();
@@ -46,9 +37,14 @@ export default function Home() {
             <h1>teste</h1>
           </Widget.Header>
           <Widget.Content>
-            <form onSubmit={handleSubmit}>
-              <input placeholder="Diz ae seu nome" onChange={handleChange} />
-              <button type="submit" disabled={!name}>Jogar</button>
+            <form onSubmit={handleSubmit} autoComplete="off">
+              <Input
+                name="name"
+                value={name}
+                onChange={handleChange}
+                placeholder="Diz ae seu nome"
+              />
+              <Button type="submit" disabled={!name}>Jogar</Button>
             </form>
           </Widget.Content>
         </Widget>
