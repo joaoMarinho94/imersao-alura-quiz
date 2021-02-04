@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+
 import db from '../db.json';
 
 import Widget from '../src/components/Widget';
@@ -20,20 +22,49 @@ const QuizContainer = styled.div`
 `;
 
 export default function Home() {
+  const router = useRouter();
+  const [name, setName] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    router.push(`quiz?name=${name}`);
+  };
+
+  const handleChange = ({ target }) => {
+    setName(target.value);
+  };
+
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
+
         <QuizLogo />
+
         <Widget>
           <Widget.Header>
             <h1>teste</h1>
           </Widget.Header>
           <Widget.Content>
-            <p>dasdasdasdasdasd asdasd asdasd asdasdasd</p>
+            <form onSubmit={handleSubmit}>
+              <input placeholder="Diz ae seu nome" onChange={handleChange} />
+              <button type="submit" disabled={!name}>Jogar</button>
+            </form>
           </Widget.Content>
         </Widget>
+
+        <Widget>
+          <Widget.Content>
+            <h1>Quizes da Galera</h1>
+
+            <p>asdas asdasd asdasd </p>
+          </Widget.Content>
+        </Widget>
+
         <Footer />
+
       </QuizContainer>
+
       <GitHubCorner projectUrl="https://github.com/joaoMarinho94" />
     </QuizBackground>
   );
