@@ -11,6 +11,7 @@ import QuizBackground from '../src/components/QuizBackground';
 import QuizLogo from '../src/components/QuizLogo';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
+import Link from '../src/components/Link';
 
 export default function Home() {
   const router = useRouter();
@@ -34,7 +35,7 @@ export default function Home() {
 
         <Widget>
           <Widget.Header>
-            <h1>teste</h1>
+            <h1>Bem Vindo ao Quiz!</h1>
           </Widget.Header>
           <Widget.Content>
             <form onSubmit={handleSubmit} autoComplete="off">
@@ -63,7 +64,10 @@ export default function Home() {
 
                 return (
                   <li key={item}>
-                    <Widget.Topic href={item} target="_blank" rel="noopener noreferrer">
+                    <Widget.Topic
+                      as={Link}
+                      href={`/quiz/${projectName}___${githubUser}`}
+                    >
                       {`${githubUser}/${projectName}`}
                     </Widget.Topic>
                   </li>
