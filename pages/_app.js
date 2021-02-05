@@ -26,6 +26,19 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column
   }
+
+  ::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  background:#333;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9e9e9e;
+}
 `;
 
 const { theme } = db;
